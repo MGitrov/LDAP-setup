@@ -15,7 +15,7 @@ services:
       - ldap_data:/var/lib/ldap
       - ldap_config:/etc/ldap/slapd.d
       - ./init.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif # Bind mount for initial LDIF file.
-    command: --copy-service
+    command: --copy-service # Ensures that the "init.ldif" file is copied into the appropriate directory before the LDAP server starts.
 
   ldap-auth:
     build: .

@@ -7,7 +7,7 @@ import qrcode # Library used for generating QR codes.
 import io
 import base64
 
-app = Flask(__name__)  # Initiating a Flask application instance.
+app = Flask(__name__)  # Initiates a Flask application instance.
 app.secret_key = "dummy_secret_key"
 
 LDAP_SERVER = "ldap://ldap-server"  # The URL of the LDAP server.
@@ -24,16 +24,16 @@ user_secrets = {} # Stores each user's unique generated secret, keyed by the use
 
 @app.route("/")
 def index():
-    if 'authenticated' in session:
-        return redirect(url_for('welcome'))
-    return redirect(url_for('login'))
+    if "authenticated" in session:
+        return redirect(url_for("welcome"))
+    return redirect(url_for("login"))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        user_dn = f"uid={username},ou=Users,{BASE_DN}"  # Constructing user's DN based on the provided username and the "BASE_DN".
+        user_dn = f"uid={username},ou=Users,{BASE_DN}"  # Constructes user's DN based on the provided username and the "BASE_DN".
 
         try:
             server = Server(LDAP_SERVER)
@@ -46,7 +46,7 @@ def login():
                     session["setup_mfa"] = True
                     return redirect(url_for("setup_mfa"))  # Redirects the user the to MFA setup.
 
-                return redirect(url_for("mfa"))  # Redirect to MFA verification if the user already has a secret generated for him.
+                return redirect(url_for("mfa"))  # Redirects to MFA verification if the user already has a secret generated for him.
 
             else:
                 flash("Invalid credentials", "danger")
@@ -91,7 +91,7 @@ def mfa():
         totp = pyotp.TOTP(secret) # Generates the TOTP token for comparison with user's input token.
         if totp.verify(token):
             session.pop("setup_mfa", None) # Removes the "setup_mfa" flag.
-            session["authenticated"] = True  # Set the "authenticated" flag to true.
+            session["authenticated"] = True  # Sets the "authenticated" flag to true.
             flash("Login successful", "success")
             return redirect(url_for("welcome"))
 
@@ -114,4 +114,4 @@ def logout():
     return redirect(url_for("login"))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)  # Allowing the Flask server to be accessed from any IP address.
+    app.run(host="0.0.0.0", port=5000)  # Allows the Flask server to be accessed from any IP address.
