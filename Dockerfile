@@ -5,6 +5,7 @@ WORKDIR /app
 
 COPY app .
 
+# Installing the "qrcode" with PIL functionality to handle image processing (the QR code).
 RUN pip install Flask ldap3 pyotp qrcode[pil]
 
 # Exposing port 5000 which is the port on which the Flask application runs.

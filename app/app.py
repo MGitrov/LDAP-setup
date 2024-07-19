@@ -33,13 +33,16 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        user_dn = f"uid={username},ou=Users,{BASE_DN}"  # Constructes user's DN based on the provided username and the "BASE_DN".
+        user_dn = f"uid={username},ou=Users,{BASE_DN}"  # Constructs user's DN based on the provided username and the "BASE_DN".
 
         try:
             server = Server(LDAP_SERVER)
-            connection = Connection(server, user=user_dn, password=password, authentication=SIMPLE)  # Connect to the LDAP server.
+            connection = Connection(server, user=user_dn, password=password, authentication=SIMPLE)  # Connects to the LDAP server using
+            # a plaintext username and password for authentication.
+
             if connection.bind():
                 session["username"] = username  # Stores the username in the current session.
+
                 if username not in user_secrets:
                     secret = pyotp.random_base32()  # Generates a new secret (a random string of characters encoded in base32) for the current user.
                     user_secrets[username] = secret # Assigns the generated secret to the current user.
