@@ -1,0 +1,21 @@
+dn: ou=Users,dc=my-domain,dc=com
+objectClass: organizationalUnit
+ou: Users
+
+dn: uid=maxim.petrov,ou=Users,dc=my-domain,dc=com
+objectClass: inetOrgPerson
+cn: Maxim Petrov
+sn: Petrov
+givenName: Maxim
+mail: maxim.petrov@my-domain.com
+uid: maxim.petrov
+userPassword: mypassword
+
+dn: uid=israel.israeli,ou=Users,dc=my-domain,dc=com
+objectClass: inetOrgPerson
+cn: Israel Israeli
+sn: Israeli
+givenName: Israel
+mail: israel.israeli@my-domain.com
+uid: israel.israeli
+userPassword: password123
