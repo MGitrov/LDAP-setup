@@ -205,6 +205,15 @@ def logout():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)  # Allows the Flask server to be accessed from any IP address.
 ```
+### Routes
+| Route        | Description                                                         |
+| ------------ | ------------------------------------------------------------------- |
+| `/`          | Displays the login page and handles user login.                     |
+| `/setup_mfa` | Displays the QR code for the user to scan and set up TOTP-based MFA.|
+| `/mfa`       | Displays the page for entering the TOTP token and verifies the token.|
+| `/welcome`   | Displays a welcome message after the user is authenticated.         |
+| `/logout`    | Logs the user out and clears the session.                           |
+
 
 # Deployment
 1. Open the Terminal and run the following command:
