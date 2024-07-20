@@ -73,7 +73,7 @@ def setup_mfa():
 
     img = qrcode.make(otp_uri) # Creates the QR code out of the TOTP URI created above.
     
-    # Creates a buffer in memory to store the QR code image (instead of a file on disk).
+    # Creates a buffer in memory to store the QR code image and get the bytes of the image (for later encoding).
     buf = io.BytesIO()
     img.save(buf, format="PNG")
 
