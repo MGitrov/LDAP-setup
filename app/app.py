@@ -8,7 +8,7 @@ import io
 import base64
 
 app = Flask(__name__)  # Initiates a Flask application instance.
-app.secret_key = "dummy_secret_key"
+app.secret_key = "dummy_secret_key" # A random string used by Flask to secure things like sessions, cookies, etc.
 
 LDAP_SERVER = "ldap://ldap-server"  # The URL of the LDAP server.
 # As the LDAP server is running on a container, I need to specify the name of the container as part of the URL.
@@ -59,7 +59,7 @@ def login():
             flash(f"Error: {str(error)}", "danger")
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    return render_template("login.html") # Handles the GET request by rendering the login form.
 
 @app.route("/setup_mfa")
 def setup_mfa():
@@ -110,7 +110,7 @@ def welcome():
 
     return render_template("welcome.html")
 
-@app.route("/logout", methods=["GET", "POST"])
+@app.route("/logout", methods=["POST"])
 def logout():
     session.pop("username", None)
     session.pop("authenticated", None)

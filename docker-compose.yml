@@ -5,9 +5,9 @@ services:
     image: osixia/openldap:latest
     container_name: ldap-server
     environment:
-      LDAP_ORGANISATION: "Petrov's" # Sets the organization name for the LDAP directory.
-      LDAP_DOMAIN: "my-domain.com" # Sets the domain components (DC) for the LDAP directory.
-      LDAP_ADMIN_PASSWORD: "admin_password" # Sets the password for the LDAP admin user.
+      LDAP_ORGANISATION: ${LDAP_ORGANISATION} # Sets the organization name for the LDAP directory.
+      LDAP_DOMAIN: ${LDAP_DOMAIN} # Sets the domain components (DC) for the LDAP directory.
+      LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASSWORD} # Sets the password for the LDAP admin user.
     ports:
       - "389:389" # For LDAP.
     volumes:
